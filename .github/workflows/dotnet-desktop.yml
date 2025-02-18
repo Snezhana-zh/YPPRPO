@@ -93,6 +93,7 @@ jobs:
       with:
         name: Test Results
         path: TestResults-${{ matrix.dotnet-version }}
+        overwrite: true
       if: ${{ always() }}
 
     # # Decode the base 64 encoded pfx and save the Signing_Certificate
