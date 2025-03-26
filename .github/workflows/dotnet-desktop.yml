@@ -3,8 +3,6 @@ name: .NET Core Desktop
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
 env:
   IMAGE_NAME: "snezhanazh/lagrange"
   
@@ -29,6 +27,22 @@ jobs:
           tags: |
             ${{ env.IMAGE_NAME }}:latest
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - run: npm run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # build:
 
