@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/Snezhana-zh/YPPRPO/compare/v1.0.1...v1.1.0) (2025-04-04)
+
+
+### Features
+
+* Delete package.json ([0ce5d3e](https://github.com/Snezhana-zh/YPPRPO/commit/0ce5d3ebd87970a2b3fc5140f2c6825bbc58cd61))
+* fix package ([419ceeb](https://github.com/Snezhana-zh/YPPRPO/commit/419ceebe417804c0c26f017ce32db8a191c0af1e))
+
 ## [1.0.1](https://github.com/Snezhana-zh/YPPRPO/compare/v1.0.0...v1.0.1) (2025-04-04)
 
 
