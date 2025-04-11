@@ -52,6 +52,7 @@ jobs:
           echo "Текущая папка: $(pwd)"
           ls -la
           ls -la ../../
+          find . -name "*.csproj" -o -name "*.sln"
       - name: SonarScanner for .NET 8 with pull request decoration support
         uses: highbyte/sonarscan-dotnet@v2.3.3
         with:
