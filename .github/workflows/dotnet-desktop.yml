@@ -45,7 +45,28 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+
   analyze:
+      - name: SonarScanner for .NET 8 with pull request decoration support
+        uses: highbyte/sonarscan-dotnet@v2.3.3
+        with:
+          # The key of the SonarQube project
+          sonarProjectKey: Snezhana1213_YPPRPO
+          # The name of the SonarQube project
+          sonarProjectName:  YPPRPO
+          # The name of the SonarQube organization in SonarCloud. For hosted SonarQube, skip this setting.
+          sonarOrganization: Snezhana1213
+          # Optional command arguments to dotnet test
+          dotnetTestArguments: --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+          # Optional extra command arguments the the SonarScanner 'begin' command
+          sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
+        
+  env:
+    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+  analyze2:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
@@ -53,23 +74,5 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v2
-      - run: dotnet tool install --global dotnet-sonarscanner
-      - run: SonarScanner.MSBuild.exe begin \
-              /key:Snezhana1213_YPPRPO \
-              /d:sonar.host.url=https://sonarcloud.io \
-              /d:sonar.login=${{ secrets.SONAR_TOKEN }} \
-              /d:sonar.projectName=YPPRPO \
-              /d:sonar.sourceEncoding=UTF-8 \
-              /d:sonar.qualitygate.wait=true \
-              /d:sonar.sources=. \
-              /d:sonar.tests=./LagrangeInterpolation.Tests/ \
-              /d:sonar.cs.opencover.reportsPaths=./reports/coverage.opencover.xml \
-              /d:sonar.cs.xunit.reportPaths=./TestResults/*.xml \
-              /d:sonar.exclusions=**/bin/**, **/obj/**
-
-
-      - run: MSBuild.exe /t:Rebuild
       - run: dotnet test --collect:"XPlat Code Coverage" --settings coverlet.runsettings
       - run: SonarScanner.MSBuild.exe sonarscanner end /d:sonar.login=${{ secrets.SONAR_TOKEN }}
