@@ -51,7 +51,7 @@ jobs:
         run: |
           echo "Текущая папка: $(pwd)"
           ls -la
-          ls -la ../
+          ls -la ../../
       - name: SonarScanner for .NET 8 with pull request decoration support
         uses: highbyte/sonarscan-dotnet@v2.3.3
         with:
@@ -65,7 +65,7 @@ jobs:
           dotnetTestArguments: --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
           # Optional extra command arguments the the SonarScanner 'begin' command
           sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
-          dotnetBuildArguments: ../LagrangeInterpolation.sln
+          dotnetBuildArguments: ../../LagrangeInterpolation.sln
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
