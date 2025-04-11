@@ -55,7 +55,7 @@ jobs:
           # The name of the SonarQube project
           sonarProjectName:  YPPRPO
           # The name of the SonarQube organization in SonarCloud. For hosted SonarQube, skip this setting.
-          sonarOrganization: Snezhana1213
+          sonarOrganization: snezhana1213
           # Optional command arguments to dotnet test
           dotnetTestArguments: --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
           # Optional extra command arguments the the SonarScanner 'begin' command
