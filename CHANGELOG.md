@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/Snezhana1213/YPPRPO/compare/v1.2.1...v1.2.2) (2025-04-11)
+
+
+### Bug Fixes
+
+* fix yml2 ([40cbe29](https://github.com/Snezhana1213/YPPRPO/commit/40cbe293ecae1edd00c8c86afd397c9a659a53ff))
+
 ## [1.2.1](https://github.com/Snezhana1213/YPPRPO/compare/v1.2.0...v1.2.1) (2025-04-11)
 
 
