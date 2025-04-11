@@ -1,3 +1,11 @@
+## [1.2.8](https://github.com/Snezhana1213/YPPRPO/compare/v1.2.7...v1.2.8) (2025-04-11)
+
+
+### Bug Fixes
+
+* fix yml8 ([f4bb0d2](https://github.com/Snezhana1213/YPPRPO/commit/f4bb0d2e857f942315173c469efde5d0d6231bf6))
+* fix yml9 ([0fca57f](https://github.com/Snezhana1213/YPPRPO/commit/0fca57fb484c8d4fd6190e91f53207d6e4e5f42e))
+
 ## [1.2.7](https://github.com/Snezhana1213/YPPRPO/compare/v1.2.6...v1.2.7) (2025-04-11)
 
 
