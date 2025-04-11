@@ -55,17 +55,17 @@ jobs:
           dotnet-version: '8.0.x'
       - run: dotnet tool install --global dotnet-sonarscanner
       - run: dotnet sonarscanner begin \
-              /key:"Snezhana1213_YPPRPO" \
-              /d:sonar.host.url="https://sonarcloud.io" \
-              /d:sonar.login="${{ secrets.SONAR_TOKEN }}" \
-              /d:sonar.projectName="YPPRPO" \
-              /d:sonar.sourceEncoding="UTF-8" \
+              /key:Snezhana1213_YPPRPO \
+              /d:sonar.host.url=https://sonarcloud.io \
+              /d:sonar.login=${{ secrets.SONAR_TOKEN }} \
+              /d:sonar.projectName=YPPRPO \
+              /d:sonar.sourceEncoding=UTF-8 \
               /d:sonar.qualitygate.wait=true \
-              /d:sonar.sources="." \
-              /d:sonar.tests="./LagrangeInterpolation.Tests/" \
-              /d:sonar.cs.opencover.reportsPaths="./reports/coverage.opencover.xml" \
-              /d:sonar.cs.xunit.reportPaths="./TestResults/*.xml" \
-              /d:sonar.exclusions="**/bin/**, **/obj/**"
+              /d:sonar.sources=. \
+              /d:sonar.tests=./LagrangeInterpolation.Tests/ \
+              /d:sonar.cs.opencover.reportsPaths=./reports/coverage.opencover.xml \
+              /d:sonar.cs.xunit.reportPaths=./TestResults/*.xml \
+              /d:sonar.exclusions=**/bin/**, **/obj/**
 
 
       - run: dotnet build
