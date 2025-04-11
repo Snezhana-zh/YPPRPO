@@ -1,3 +1,10 @@
+## [1.2.10](https://github.com/Snezhana1213/YPPRPO/compare/v1.2.9...v1.2.10) (2025-04-11)
+
+
+### Bug Fixes
+
+* fix yml99 ([47a5339](https://github.com/Snezhana1213/YPPRPO/commit/47a533956631d5c0ff5c57daabf1666429986781))
+
 ## [1.2.9](https://github.com/Snezhana1213/YPPRPO/compare/v1.2.8...v1.2.9) (2025-04-11)
 
 
