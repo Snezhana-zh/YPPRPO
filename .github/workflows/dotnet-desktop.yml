@@ -44,17 +44,21 @@ jobs:
             @semantic-release/git@10.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  test_and_report_coverage:
-    runs-on: ubuntu-latest
-    name: dotnet test coverage update
-    steps:
-      - uses: chill-viking/dotnet-sonar-scanner@v2
-        name: Scan and Publish
-        with:
-          sonar-project-key: 'Snezhana1213_YPPRPO'
-          sonar-org-key: 'snezhana1213'
-          token: ${{ secrets.GITHUB_TOKEN }}
-          sonar-token: ${{ secrets.SONAR_TOKEN }}
+  analyze:
+      runs-on: ubuntu-latest
+      steps:
+        - name: SonarScanner for .NET 8 with pull request decoration support
+          uses: highbyte/sonarscan-dotnet@v2.3.3
+          with:
+            # The key of the SonarQube project
+            sonarProjectKey: Snezhana1213_YPPRPO
+            # The name of the SonarQube project
+            sonarProjectName:  YPPRPO
+            # The name of the SonarQube organization in SonarCloud. For hosted SonarQube, skip this setting.
+            sonarOrganization: snezhana1213
+          env:
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   # analyze2:
   #   runs-on: windows-latest
   #   steps:
