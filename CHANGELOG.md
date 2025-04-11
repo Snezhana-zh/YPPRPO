@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Snezhana1213/YPPRPO/compare/v1.1.0...v1.2.0) (2025-04-11)
+
+
+### Features
+
+* added sonar ([f64bf68](https://github.com/Snezhana1213/YPPRPO/commit/f64bf6833ff9759671ef647ace5a0c671583e9b5))
+
 # [1.1.0](https://github.com/Snezhana-zh/YPPRPO/compare/v1.0.1...v1.1.0) (2025-04-04)
 
 
