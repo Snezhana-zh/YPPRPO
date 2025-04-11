@@ -46,7 +46,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   analyze:
-    needs: release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -56,7 +55,7 @@ jobs:
           dotnet-version: '8.0.x'
       - run: dotnet tool install --global dotnet-sonarscanner
       - run: dotnet sonarscanner begin \
-              /k:"Snezhana1213_YPPRPO" \
+              /key:"Snezhana1213_YPPRPO" \
               /d:sonar.host.url="https://sonarcloud.io" \
               /d:sonar.login="${{ secrets.SONAR_TOKEN }}" \
               /d:sonar.projectName="YPPRPO" \
