@@ -80,12 +80,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"Snezhana1213_YPPRPO" /o:"snezhana1213" /d:sonar.tests="./LagrangeInterpolation.Tests" /d:sonar.coverage.cache.ttl=0 /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.opencover.reportsPaths=coverage.xml /d:"sonar.verbose=true" /d:sonar.host.url="https://sonarcloud.io"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"Snezhana1213_YPPRPO" /o:"snezhana1213" /d:sonar.tests="./LagrangeInterpolation.Tests" /d:sonar.test.inclusions="**/*Tests*/**" /d:sonar.coverage.cache.ttl=0 /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.opencover.reportsPaths=coverage.xml /d:"sonar.verbose=true" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build --no-incremental
-          & C:\tools\opencover\OpenCover.Console.exe -target:"dotnet.exe" 
-          -targetargs:"test --no-build"
-          -returntargetcode
-          -output:coverage.xml
-          -register:user
-          dotnet-coverage collect "dotnet test" -f xml -o ".coveragexml"
+          dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
