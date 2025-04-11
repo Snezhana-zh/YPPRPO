@@ -51,6 +51,7 @@ jobs:
         run: |
           echo "Текущая папка: $(pwd)"
           ls -la
+          ls -la ../
       - name: SonarScanner for .NET 8 with pull request decoration support
         uses: highbyte/sonarscan-dotnet@v2.3.3
         with:
