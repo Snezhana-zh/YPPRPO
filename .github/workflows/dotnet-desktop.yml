@@ -44,39 +44,24 @@ jobs:
             @semantic-release/git@10.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  analyze:
+  test_and_report_coverage:
     runs-on: ubuntu-latest
+    name: dotnet test coverage update
     steps:
-      - name: Get current directory
-        run: |
-          echo "Текущая папка: $(pwd)"
-          ls -la
-          ls -la ../../
-          find . -name "*.csproj" -o -name "*.sln"
-      - name: SonarScanner for .NET 8 with pull request decoration support
-        uses: highbyte/sonarscan-dotnet@v2.3.3
+      - uses: chill-viking/dotnet-sonar-scanner@v2
+        name: Scan and Publish
         with:
-          # The key of the SonarQube project
-          sonarProjectKey: Snezhana1213_YPPRPO
-          # The name of the SonarQube project
-          sonarProjectName:  YPPRPO
-          # The name of the SonarQube organization in SonarCloud. For hosted SonarQube, skip this setting.
-          sonarOrganization: snezhana1213
-          # Optional command arguments to dotnet test
-          dotnetTestArguments: --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-          # Optional extra command arguments the the SonarScanner 'begin' command
-          sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
-          dotnetBuildArguments: /home/runner/work/YPPRPO/YPPRPO/LagrangeInterpolation.csproj
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  analyze2:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0.x'
-      - run: dotnet test --collect:"XPlat Code Coverage" --settings coverlet.runsettings
-      - run: SonarScanner.MSBuild.exe sonarscanner end /d:sonar.login=${{ secrets.SONAR_TOKEN }}
+          sonar-project-key: 'Snezhana1213_YPPRPO'
+          sonar-org-key: 'snezhana1213'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+  # analyze2:
+  #   runs-on: windows-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Setup .NET
+  #       uses: actions/setup-dotnet@v4
+  #       with:
+  #         dotnet-version: '8.0.x'
+  #     - run: dotnet test --collect:"XPlat Code Coverage" --settings coverlet.runsettings
+  #     - run: SonarScanner.MSBuild.exe sonarscanner end /d:sonar.login=${{ secrets.SONAR_TOKEN }}
