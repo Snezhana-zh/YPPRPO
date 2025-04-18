@@ -84,7 +84,7 @@ jobs:
           # dotnet tool install --global coverlet.console
 
           # dotnet-coverage collect "dotnet test" -f xml -o "coverage.opencover.xml"
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"Snezhana1213_YPPRPO" /o:"snezhana1213" /d:sonar.tests="./LagrangeInterpolation.Tests" /d:sonar.test.inclusions="**/*Tests*/**" /d:sonar.coverage.cache.ttl=0 /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.opencover.reportsPaths=coverage.opencover.xml /d:"sonar.verbose=true" /d:sonar.host.url="https://sonarcloud.io"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"Snezhana1213_YPPRPO" /o:"snezhana1213" /d:sonar.sources="." /d:sonar.tests="./LagrangeInterpolation.Tests" /d:sonar.test.inclusions="**/*Tests*/**" /d:sonar.coverage.cache.ttl=0 /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.opencover.reportsPaths=coverage.opencover.xml /d:"sonar.verbose=true" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build --no-incremental
           # coverlet .\LagrangeInterpolation.Tests\bin\Debug\net8.0\LagrangeInterpolation.Tests.dll -t "dotnet" -a "test --no-build" -f=opencover -o="coverage.opencover.xml"
           dotnet-coverage collect "dotnet test" -f xml -o "coverage.opencover.xml"
