@@ -80,7 +80,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          dotnet tool install --global dotnet-coverage
+          # dotnet tool install --global dotnet-coverage
+          dotnet tool install --global coverlet.console
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"Snezhana1213_YPPRPO" /o:"snezhana1213" /d:sonar.tests="./LagrangeInterpolation.Tests" /d:sonar.test.inclusions="**/*Tests*/**" /d:sonar.coverage.cache.ttl=0 /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.opencover.reportsPaths=coverage.xml /d:"sonar.verbose=true" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build --no-incremental
           coverlet .\CovExample.Tests\bin\Debug\net6.0\CovExample.Tests.dll
